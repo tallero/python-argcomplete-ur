@@ -10,7 +10,7 @@ url='https://github.com/kislyuk/argcomplete'
 arch=('any')
 license=('Apache-2.0')
 depends=('python')
-makedepends=('git' 'python-setuptools')
+makedepends=('git' 'python-build' 'python-installer' 'python-setuptools' 'python-wheel')
 checkdepends=('python-pexpect' 'tcsh' 'fish' 'python-pip')
 source=(${_pyname}::"git+$url?signed#tag=v$pkgver")
 sha512sums=('20c09309c8d1ec1363d8f987390ef27bf3f36cb0d68e999c82242c7c8318a15a8908976a4b348db973bfd54084242e3b271b4e46271275bbeefe306aea9405ec')
@@ -23,7 +23,7 @@ pkgver() {
 
 build() {
   cd ${_pyname}
-  python setup.py build
+  python -m build --wheel --no-isolation
 }
 
 check() {
@@ -35,7 +35,7 @@ check() {
 
 package() {
   cd ${_pyname}
-  python setup.py install -O1 --root="${pkgdir}" --skip-build
+  python -m installer --destdir="$pkgdir" dist/*.whl
 }
 
 # vim: ts=2 sw=2 et:
