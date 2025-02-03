@@ -24,7 +24,10 @@ build() {
 
 check() {
   cd ${_pyname}
-  python test/test.py -v
+  python -m venv --system-site-packages test-venv
+  test-venv/bin/python -m installer dist/*.whl
+  PATH="$PWD/test-venv/bin/:$PATH" test-venv/bin/python test/test.py -v
+
 }
 
 package() {

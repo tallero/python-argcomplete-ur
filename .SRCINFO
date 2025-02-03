@@ -12,8 +12,9 @@ pkgbase = python-argcomplete
 	checkdepends = zsh
 	makedepends = git
 	makedepends = python-build
+	makedepends = python-hatch-vcs
+	makedepends = python-hatchling
 	makedepends = python-installer
-	makedepends = python-setuptools-scm
 	makedepends = python-wheel
 	depends = python
 	source = argcomplete::git+https://github.com/kislyuk/argcomplete#tag=v3.5.3
